@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BRACKETS 으로 시작하기</title>
+    <meta name="description" content="Brackets에 대한 대화식 시작 안내서입니다.">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h2 class="logo"><a href="#">Logo</a></h2>
+            <nav class="navbar">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Service</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+        <div id="map" style="width:100%;height:40%;"></div>
+        <footer class="footer">
+            <div class="footer_container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">about us</a></li>
+                            <li><a href="#">our services</a></li>
+                            <li><a href="#">privacy policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Get help</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <nav class="bottom-menu-bar">
+                        <a href="#" class="policy">개인정보처리방침</a>
+                        <a href="#" class="policy">홈페이지 이용약관</a>
+                        <a href="#" class="policy">위치정보 이용약관</a>
+                        <a href="#" class="policy">비회원 이용약관</a>
+                        <a href="#" class="policy">윤리경영 핫라인</a>
+                    </nav>
+                </div>
+                <div class="footer-copyright">
+                    <p>Copyright &copy;2023 Logo. All Rights Reserved. </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a4c9ab49b2bb0029c9d10234c8b182e6"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(36.83947776995263, 127.1862027209088), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 마커를 표시할 위치와 title 객체 배열입니다 
+        var positions = [
+            {
+                title: '자라쿠라멘',
+                latlng: new kakao.maps.LatLng(36.841388632266614, 127.1858710168837)
+            },
+            {
+                title: '기숙사',
+                latlng: new kakao.maps.LatLng(36.841388632266614, 127.1858710168837)
+            },
+            {
+                title: '텃밭',
+                latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+            },
+            {
+                title: '근린공원',
+                latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+            }
+        ];
+
+        // 마커 이미지의 이미지 주소입니다
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+        for (var i = 0; i < positions.length; i++) {
+
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(24, 35);
+
+            // 마커 이미지를 생성합니다    
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image: markerImage // 마커 이미지 
+            });
+        }
+    </script>
+
+</body>
+
+</html>
